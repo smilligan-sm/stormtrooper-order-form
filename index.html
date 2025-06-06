@@ -1,28 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Uniform Order Form</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 </head>
 <body>
-  <form action="/submit-order" method="post">
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" required><br><br>
-
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required><br><br>
-
-      <label for="product">Product:</label>
-      <select id="product" name="product" required>
-        <option value="product1">Product 1</option>
-        <option value="product2">Product 2</option>
-      </select><br><br>
-
-    <label for="quantity">Quantity:</label>
-    <input type="number" id="quantity" name="quantity" min="1" value="1" required><br><br>
-
-    <button type="submit">Place Order</button>
-  </form>
+  <div class="background">
+    <div class="container-main">
+      <div class="form-container">
+          <!--Heading and Intro -->
+        <h1>Stormtrooper Uniform Order Form</h1>
+        <h3>Important Information:</h3>
+        <ul>
+          <li>All Stormtroopers, regardless of rank, must wear the standard white, hard-shell armor at all times, except for specific, authorised exceptions.</li>
+          <li>Stormtrooper armor must be maintained in pristine condition, including regular cleaning and polishing, to ensure a professional and presentable appearance.</li>
+          <li>Stormtrooper armor is a symbol of the Empire and is not to be personalised or modified with any markings or decorations.</li>
+          <li>Stormtroopers are expected to embody the ideals and principles of the Galactic Empire through their appearance, conduct, and adherence to this uniform policy. </li>
+        </ul>
+      <!--Order form options -->
+        <form id="orderForm">
+          <div class="user-info">
+            <div class="mb-3">
+            <label for="employeeId" class="form-label">Employee ID:</label>
+            <input type="text" id="employeeId" required class="form-control w-25"/>
+            </div>
+            <div class="mb-3">
+            <label for="email" class="form-label">Email Address:</label>
+            <input type="email" id="email" required class="form-control w-50"/>
+            </div>
+          </div>
+          <div id="itemsList"></div>
+          <button type="submit" class="submit-btn">Submit Order</button>
+        </form>
+      </div>
+    <!--Summary is hidden -->
+    <div id="summaryModal" class="modal hidden">
+    <div class="modal-content">
+      <h2>Order Summary</h2>
+      <div id="summaryContent"></div>
+      <p><strong>Total: $<span id="summaryTotal">0.00</span></strong></p>
+      <div class="modal-buttons">
+        <button onclick="closeModal()">Edit</button>
+        <button onclick="confirmOrder()">Confirm</button>
+      </div>
+    </div>
+    </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>

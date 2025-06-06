@@ -1,0 +1,137 @@
+:root {
+  background-color: #6e6e6e;
+}
+.background {
+  background-color: #6e6e6e;  
+}
+.container-main {
+  font-family: "Share Tech Mono", monospace;
+  margin: 20px auto;
+  max-width: 1000px;
+  border: #333 1px solid;
+  padding: 50px;
+  box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  background-color: white;
+}
+h1 {
+  text-align: center;
+  font-family: "Audiowide", sans-serif;
+  color: #333;
+}
+.form-container {
+  padding: 20px;
+}
+h3 {
+  font-size: 16px;
+}
+p {
+  padding-top: 20px;
+}
+.label-qty {
+  max-width: 50px;
+}
+/*
+.user-info {
+  margin-bottom: 20px;
+}
+
+.user-info label,
+.user-info input {
+  display: block;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+#itemsList .item-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+}
+
+.item-row {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  padding: 15px 0;
+  gap: 20px;
+}
+.item-content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.item-row img {
+  display: flex;
+  width: 50px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.item-details {
+  flex: 1;
+}
+
+.item-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 10px;
+}
+*/
+.submit-btn {
+  display: block;
+  margin: 20px auto;
+  background-color: #FFE81F;
+  color: rgb(0, 0, 0);
+  border: none;
+  padding: 15px 30px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  background-color: black;
+  color: #FFE81F;
+}
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.hidden {
+  display: none;
+}
+
+.modal-content {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  max-width: 600px;
+  width: 90%;
+  text-align: center;
+}
+
+.modal-buttons {
+  margin-top: 20px;
+}
+
+.modal-buttons button {
+  margin: 0 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+}
