@@ -13,10 +13,8 @@
 </head>
 <body>
   <div class="container">
-    <div class="form-header"><h1>Stormtrooper Uniform Order Form</h1>
-    </div>
+    <h1>Stormtrooper Uniform Order Form</h1>
     <div class="container-main">
-      <div class="form-container">
           <!--Heading and Intro -->
         <h3>Important Information:</h3>
         <ul>
@@ -25,38 +23,48 @@
           <li>Stormtrooper armor is a symbol of the Empire and is not to be personalised or modified with any markings or decorations.</li>
           <li>Stormtroopers are expected to embody the ideals and principles of the Galactic Empire through their appearance, conduct, and adherence to this uniform policy. </li>
         </ul>
+        </div>
       <!--Order form options -->
+      <div class="container-main">
         <form id="orderForm">
+          <h2>Enter your employee details:</h2>
           <div class="user-info">
+            <div class="row">
+            <div class="col-5">
             <div class="mb-3">
             <label for="employeeId" class="form-label">Employee ID:</label>
-            <input type="text" id="employeeId" required class="form-control w-25"/>
+            <input type="text" id="employeeId" required class="form-control w-50"/>
             </div>
-            <div class="mb-3">
+            </div>
+            <div class="col-7">
             <label for="email" class="form-label">Email Address:</label>
-            <input type="email" id="email" required class="form-control w-50"/>
+            <input type="email" id="email" required class="form-control w-75"/>
             </div>
-          </div>
-          <div id="itemsList"></div>
-          <p><strong>Live Total: $<span id="liveTotal">0.00</span></strong></p>
+            </div>
+            </div>
+            </div>
+          <div class="container-main">
+            <h2>Select items:</h2>
+            <div id="itemsList"></div>
+          </div>    
+          <div class="container-main">
+          <p class="live-total"><strong>Live Total: $<span id="liveTotal">0.00</span></strong></p>
           <button type="submit" class="submit-btn">Submit Order</button>
         </form>
-
-    <!--Summary is hidden 
-        <div id="summaryModal" class="modal hidden">
-        <div class="modal-content">
-          <h2>Order Summary</h2>
-          <div id="summaryContent"></div>
-          <p><strong>Total: $<span id="summaryTotal">0.00</span></strong></p>
-          <div class="modal-buttons">
-            <button onclick=closeModal()>Edit</button>
-            <button onclick=confirmOrder()>Confirm</button>
-          </div>
-        </div>
-        </div>-->
-    </div>
+      </div>
     </div>
   </div>
+  <div id="floatingTotalCard" class="card shadow">
+    <div id="cardHeader" class="card-header d-flex justify-content-between align-items-center cursor-move">
+      <span>Order Summary</span>
+      <button id="toggleCard" class="btn btn-sm btn-outline-secondary">−</button>
+    </div>
+    <div id="cardBody" class="card-body">
+      <p class="mb-1">Items: <strong><span id="floatingQty">0</span></strong></p>
+      <p class="mb-0">Total: ᖬ<strong><span id="floatingTotal">0.00</span></strong></p>
+    </div>
+  </div>
+  <button id="total" title="Cart Total">↑</button>
   <button id="backToTop" title="Go to top">↑</button>
   <script src="script.js"></script>
 </body>

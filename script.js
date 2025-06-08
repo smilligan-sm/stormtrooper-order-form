@@ -1,3 +1,4 @@
+/*Item list options*/
 const sizes = ["XS", "S", "M", "L", "XL", "XXL"];
 const items = [
   { id: 1, name: "Full Kit", price: 675, image: "https://s3.amazonaws.com/shecodesio-production/uploads/files/000/167/483/original/full-armour.jpg?1749186174" },
@@ -21,7 +22,7 @@ if (itemsList) {
     itemsList.appendChild(itemRow);
   });
 }
-
+/* Display item list in form */
 items.forEach(item => {
   const itemRow = document.createElement("div");
   itemRow.className = "item-row";
@@ -60,16 +61,64 @@ items.forEach(item => {
   itemsList.appendChild(itemRow);
 });
 
-
+/* Update total of order */
 function updateTotal() {
   let total = 0;
+  let totalQty = 0;
+
   items.forEach(item => {
     const qty = parseInt(document.querySelector(`[name="qty-${item.id}"]`).value || 0);
     total += qty * item.price;
+    totalQty += qty;
   });
-  document.getElementById("liveTotal").innerText = total.toFixed(2);
+
+  const formattedTotal = total.toFixed(2);
+  document.getElementById("liveTotal").innerText = formattedTotal;
+  document.getElementById("floatingTotal").innerText = formattedTotal;
+  document.getElementById("floatingQty").innerText = totalQty;
 }
 
+/* Order Summary Card collapsible function*/
+document.getElementById("toggleCard").addEventListener("click", function () {
+  const card = document.getElementById("floatingTotalCard");
+  card.classList.toggle("collapsed");
+  this.textContent = card.classList.contains("collapsed") ? '+' : '−';
+});
+
+/* Order Summary Card function that allows it to be dragged across the page,a s per user preferences*/
+(function makeCardDraggable() {
+  const card = document.getElementById("floatingTotalCard");
+  const header = document.getElementById("cardHeader");
+  let offsetX = 0, offsetY = 0, startX = 0, startY = 0;
+
+  header.addEventListener("mousedown", dragStart);
+
+  function dragStart(e) {
+    startX = e.clientX;
+    startY = e.clientY;
+    const rect = card.getBoundingClientRect();
+    offsetX = startX - rect.left;
+    offsetY = startY - rect.top;
+    document.addEventListener("mousemove", drag);
+    document.addEventListener("mouseup", dragEnd);
+  }
+
+  function drag(e) {
+    e.preventDefault();
+    const x = e.clientX - offsetX;
+    const y = e.clientY - offsetY;
+    card.style.left = `${x}px`;
+    card.style.top = `${y}px`;
+    card.style.right = 'auto'; // prevent snapping back to right
+  }
+
+  function dragEnd() {
+    document.removeEventListener("mousemove", drag);
+    document.removeEventListener("mouseup", dragEnd);
+  }
+})();
+
+/* Submit function that shows ordered items */
 document.getElementById("orderForm").addEventListener("submit", function (e) {
   e.preventDefault();
 
@@ -108,8 +157,12 @@ document.getElementById("orderForm").addEventListener("submit", function (e) {
     // Reset the form after the user clicks OK
   document.getElementById("orderForm").reset();
 
-  // Also reset the live total display to 0.00 after form reset
+  // Also reset the total displays to 0.00 after form reset
   document.getElementById("liveTotal").innerText = "0.00";
+  document.getElementById("floatingTotal").innerText = "0.00";
+  document.getElementById("floatingQty").innerText = "0";
+
+
 
   // Scroll to top after resetting
   window.scrollTo({ top: 0, behavior: 'smooth' });
