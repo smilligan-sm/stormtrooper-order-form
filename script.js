@@ -14,6 +14,14 @@ const items = [
 
 const itemsList = document.getElementById("itemsList");
 
+if (itemsList) {
+  items.forEach(item => {
+    const itemRow = document.createElement("div");
+    // ...
+    itemsList.appendChild(itemRow);
+  });
+}
+
 items.forEach(item => {
   const itemRow = document.createElement("div");
   itemRow.className = "item-row";
@@ -24,19 +32,28 @@ items.forEach(item => {
       <div class="col-sm-10"><h3>${item.name}</h3></div>
     </div>
     <div class="row d-flex align-items-center border-bottom border-dark pb-4">
-	    <div class="col-sm"><p>Price: ᖬ${item.price.toFixed(2)}</p></div>
+      <div class="col-sm"><p>Price: ᖬ${item.price.toFixed(2)}</p></div>
       <div class="col-sm">
-        <label>Size:
-          <select name="size-${item.id}">
-            ${sizes.map(size => `<option value="${size}">${size}</option>`).join("")}
-          </select>
-        </label>
-	    </div>
+        ${item.id === 7 
+          ? `<label>Colour:
+              <select name="colour-${item.id}">
+                <option value="Red">Black</option>
+                <option value="Orange">Orange</option>
+                <option value="White">White</option>
+                <option value="Black">Red</option>
+              </select>
+            </label>`
+          : `<label>Size:
+              <select name="size-${item.id}">
+                ${sizes.map(size => `<option value="${size}">${size}</option>`).join("")}
+            </select>
+            </label>`}
+      </div>
       <div class="col-sm">
         <label>Quantity:
           <input type="number" name="qty-${item.id}" min="0" value="0" onchange="updateTotal()" class="label-qty"/>
         </label>
-	    </div>
+      </div>
     </div>
   </div>
 `;
@@ -58,39 +75,59 @@ document.getElementById("orderForm").addEventListener("submit", function (e) {
 
   const employeeId = document.getElementById("employeeId").value.trim();
   const email = document.getElementById("email").value.trim();
+
   if (!employeeId || !email) {
-    alert("Please enter Employee ID and Email.");
+    alert("Please enter both your Employee ID and Email Address before submitting the form.");
     return;
   }
 
-  let hasItem = false;
-  let summaryHTML = "";
   let total = 0;
+  let summary = `Thank you for your order, Stormtrooper ${employeeId}!\n\nOrder Summary:\n`;
 
   items.forEach(item => {
     const qty = parseInt(document.querySelector(`[name="qty-${item.id}"]`).value || 0);
-    const size = document.querySelector(`[name="size-${item.id}"]`).value;
     if (qty > 0) {
-      hasItem = true;
+      let sizeOrColour = "";
+
+      if (item.id === 7) {
+        const colour = document.querySelector(`[name="colour-${item.id}"]`).value;
+        sizeOrColour = ` | Colour: ${colour}`;
+      } else {
+        const size = document.querySelector(`[name="size-${item.id}"]`).value;
+        sizeOrColour = ` | Size: ${size}`;
+      }
+
+      summary += `• ${item.name} | Qty: ${qty}${sizeOrColour}\n`;
       total += qty * item.price;
-      summaryHTML += `<p>${item.name} - Size: ${size} - Qty: ${qty} - $${(item.price * qty).toFixed(2)}</p>`;
     }
   });
 
-  if (!hasItem) {
-    alert("Please select at least one item.");
-    return;
-  }
+  summary += `\nOrder Total: $${total.toFixed(2)}`;
+  alert(summary);
+  
+    // Reset the form after the user clicks OK
+  document.getElementById("orderForm").reset();
 
-  document.getElementById("summaryContent").innerHTML = summaryHTML;
-  document.getElementById("summaryTotal").innerText = total.toFixed(2);
-  document.getElementById("summaryModal").classList.remove("hidden");
+  // Also reset the live total display to 0.00 after form reset
+  document.getElementById("liveTotal").innerText = "0.00";
+
+  // Scroll to top after resetting
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
-function closeModal() {
-  document.getElementById("summaryModal").classList.add("hidden");
-}
 
-function confirmOrder() {
-  window.location.href = "thankyou.html";
-}
+// Show/hide the "Back to Top" button based on scroll
+window.onscroll = function () {
+  const btn = document.getElementById("backToTop");
+  if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+    btn.style.display = "block";
+  } else {
+    btn.style.display = "none";
+  }
+};
+
+// Scroll to top when button is clicked
+document.getElementById("backToTop").addEventListener("click", function () {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+

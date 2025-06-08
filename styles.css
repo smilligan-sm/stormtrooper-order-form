@@ -51,38 +51,28 @@ p {
   background-color: black;
   color: #FFE81F;
 }
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-}
-
-.hidden {
+#backToTop {
   display: none;
-}
-
-.modal-content {
-  background: white;
-  padding: 30px;
-  border-radius: 8px;
-  max-width: 600px;
-  width: 90%;
+  position: fixed;
+  bottom: 30px;
+  right: 150px;
+  z-index: 95;
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 50%;
+  background-color: #333;
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+  line-height: 46px;
   text-align: center;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.modal-buttons {
-  margin-top: 20px;
-}
-
-.modal-buttons button {
-  margin: 0 10px;
-  padding: 10px 20px;
-  font-size: 16px;
+#backToTop:hover {
+  background-color: #555;
+  transform: scale(1.1);
 }
