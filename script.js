@@ -43,13 +43,14 @@ items.forEach(item => {
   itemsList.appendChild(itemRow);
 });
 
+
 function updateTotal() {
   let total = 0;
   items.forEach(item => {
     const qty = parseInt(document.querySelector(`[name="qty-${item.id}"]`).value || 0);
     total += qty * item.price;
   });
-  document.getElementById("summaryTotal").innerText = total.toFixed(2);
+  document.getElementById("liveTotal").innerText = total.toFixed(2);
 }
 
 document.getElementById("orderForm").addEventListener("submit", function (e) {
@@ -91,5 +92,5 @@ function closeModal() {
 }
 
 function confirmOrder() {
-  window.location.href = "thank-you.html";
+  window.location.href = "thankyou.html";
 }

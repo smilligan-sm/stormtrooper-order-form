@@ -1,9 +1,10 @@
-:root {
+
+.container {
+  padding: 50px;
   background-color: #6e6e6e;
+  margin: 0;
 }
-.background {
-  background-color: #6e6e6e;  
-}
+
 .container-main {
   font-family: "Share Tech Mono", monospace;
   margin: 20px auto;
@@ -14,76 +15,26 @@
   border-radius: 15px;
   background-color: white;
 }
-h1 {
-  text-align: center;
-  font-family: "Audiowide", sans-serif;
+.form-container {
   color: #333;
 }
-.form-container {
-  padding: 20px;
+h1 {
+  color: white;
+  text-align: center;
+  font-family: "Audiowide", sans-serif;
 }
 h3 {
   font-size: 16px;
+  padding: 20px;
+  margin-bottom: 40px;
+
 }
 p {
-  padding-top: 20px;
+  padding-top: 15px;
 }
 .label-qty {
   max-width: 50px;
 }
-/*
-.user-info {
-  margin-bottom: 20px;
-}
-
-.user-info label,
-.user-info input {
-  display: block;
-  margin-bottom: 10px;
-  width: 100%;
-}
-
-#itemsList .item-row {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 10px;
-}
-
-.item-row {
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid #ddd;
-  padding: 15px 0;
-  gap: 20px;
-}
-.item-content {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  width: 100%;
-}
-
-.item-row img {
-  display: flex;
-  width: 50px;
-  height: auto;
-  object-fit: cover;
-  border-radius: 6px;
-}
-
-.item-details {
-  flex: 1;
-}
-
-.item-options {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-  margin-top: 10px;
-}
-*/
 .submit-btn {
   display: block;
   margin: 20px auto;

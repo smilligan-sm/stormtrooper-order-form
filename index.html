@@ -12,11 +12,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="background">
+  <div class="container">
+    <div class="form-header"><h1>Stormtrooper Uniform Order Form</h1>
+    </div>
     <div class="container-main">
       <div class="form-container">
           <!--Heading and Intro -->
-        <h1>Stormtrooper Uniform Order Form</h1>
+        </div>
         <h3>Important Information:</h3>
         <ul>
           <li>All Stormtroopers, regardless of rank, must wear the standard white, hard-shell armor at all times, except for specific, authorised exceptions.</li>
@@ -37,9 +39,9 @@
             </div>
           </div>
           <div id="itemsList"></div>
+          <p><strong>Live Total: $<span id="liveTotal">0.00</span></strong></p>
           <button type="submit" class="submit-btn">Submit Order</button>
         </form>
-      </div>
     <!--Summary is hidden -->
     <div id="summaryModal" class="modal hidden">
     <div class="modal-content">
